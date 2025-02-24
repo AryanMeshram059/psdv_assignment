@@ -11,7 +11,9 @@
       --background-color: #f5f7fa;
       --text-color: #333;
       --accent-color: #4a90e2;
+      --secondary-color: #50e3c2;
       --code-bg: #2d2d2d;
+      --highlight-color: #ff6b6b;
       --output-bg: #e8ffe8;
     }
 
@@ -19,7 +21,9 @@
       --background-color: #1e1e1e;
       --text-color: #e0e0e0;
       --accent-color: #00b4d8;
+      --secondary-color: #ff9f1c;
       --code-bg: #2d2d2d;
+      --highlight-color: #ff6b6b;
       --output-bg: #2e8b57;
     }
 
@@ -33,7 +37,7 @@
     }
 
     header {
-      background: var(--accent-color);
+      background: linear-gradient(45deg, var(--accent-color), var(--secondary-color));
       padding: 15px 20px;
       color: #fff;
       display: flex;
@@ -50,58 +54,23 @@
       gap: 10px;
     }
 
-    .theme-switch {
-      position: relative;
-      display: inline-block;
-      width: 50px;
-      height: 24px;
-    }
-
-    .theme-switch input {
-      opacity: 0;
-      width: 0;
-      height: 0;
-    }
-
-    .slider {
-      position: absolute;
+    .theme-switcher {
+      background: none;
+      border: 1px solid #fff;
+      padding: 8px 12px;
+      color: #fff;
+      border-radius: 5px;
       cursor: pointer;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-color: #ccc;
-      transition: 0.4s;
-      border-radius: 34px;
-    }
-
-    .slider:before {
-      position: absolute;
-      content: "";
-      height: 16px;
-      width: 16px;
-      left: 4px;
-      bottom: 4px;
-      background-color: white;
-      transition: 0.4s;
-      border-radius: 50%;
-    }
-
-    input:checked + .slider {
-      background-color: var(--text-color);
-    }
-
-    input:checked + .slider:before {
-      transform: translateX(26px);
     }
 
     .container {
       max-width: 900px;
       margin: 40px auto;
-      background: var(--background-color);
+      background: #fff;
       padding: 20px;
       box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
       border-radius: 12px;
+      background-color: var(--background-color);
       color: var(--text-color);
     }
 
@@ -124,19 +93,87 @@
       margin-top: 10px;
       font-family: Consolas, Monaco, monospace;
     }
+
+    a {
+      color: var(--accent-color);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
   </style>
 </head>
 <body>
   <header>
     <h1><i class="fas fa-code"></i> More-Itertools Blog</h1>
-    <label class="theme-switch">
-      <input type="checkbox" onchange="toggleTheme()">
-      <span class="slider"></span>
-    </label>
+    <button class="theme-switcher" onclick="toggleTheme()"><i class="fas fa-adjust"></i> Toggle Theme</button>
   </header>
 
   <div class="container">
-    <!-- Blog content remains unchanged -->
+    <h1><i class="fas fa-book"></i> Mastering More-Itertools: Advanced Python Itertools</h1>
+
+    <h2><i class="fas fa-info-circle"></i> Introduction</h2>
+    <p>Python’s <code>itertools</code> module is a powerful standard library that provides efficient iteration utilities...</p>
+
+    <h2><i class="fas fa-cogs"></i> Installation & Setup</h2>
+    <pre><code class="language-bash">pip install more-itertools</code></pre>
+
+    <h2><i class="fas fa-star"></i> Key Features</h2>
+    <h3><i class="fas fa-stream"></i> 1. chunked</h3>
+    <pre><code class="language-python">from more_itertools import chunked
+
+data = list(range(1, 11))
+print(list(chunked(data, 3)))
+</code></pre>
+    <div class="output">[[1, 2, 3], [4, 5, 6], [7, 8, 9], [10]]</div>
+
+    <h3><i class="fas fa-columns"></i> 2. divide</h3>
+    <pre><code class="language-python">from more_itertools import divide
+
+data = list(range(1, 11))
+print(list(divide(3, data)))
+</code></pre>
+    <div class="output">[[1, 2, 3, 4], [5, 6, 7], [8, 9, 10]]</div>
+
+    <h3><i class="fas fa-object-group"></i> 3. groupby_transform</h3>
+    <pre><code class="language-python">from more_itertools import groupby_transform
+
+data = ["a", "A", "b", "B"]
+print({key: list(group) for key, group in groupby_transform(data, key=str.lower)})
+</code></pre>
+    <div class="output">{'a': ['a', 'A'], 'b': ['b', 'B']}</div>
+
+    <h3><i class="fas fa-window-restore"></i> 4. windowed</h3>
+    <pre><code class="language-python">from more_itertools import windowed
+
+data = list(range(1, 6))
+print(list(windowed(data, 3)))
+</code></pre>
+    <div class="output">[(1, 2, 3), (2, 3, 4), (3, 4, 5)]</div>
+
+    <h2><i class="fas fa-lightbulb"></i> Use Cases</h2>
+    <ul>
+      <li>Data chunking for batch processing.</li>
+      <li>Efficient data transformation.</li>
+      <li>Sliding window operations for time-series analysis.</li>
+      <li>Parallel processing for handling large datasets.</li>
+    </ul>
+
+    <h2><i class="fas fa-check-circle"></i> Conclusion</h2>
+    <p>The <code>more-itertools</code> library expands the capabilities of Python’s built-in <code>itertools</code>...</p>
+
+    <h2><i class="fas fa-link"></i> References</h2>
+    <ul>
+      <li><a href="https://more-itertools.readthedocs.io/en/stable/api.html" target="_blank">More-Itertools Documentation</a></li>
+      <li><a href="https://docs.python.org/3/library/itertools.html" target="_blank">Python Itertools Official Documentation</a></li>
+      <li><a href="https://realpython.com/python-itertools/" target="_blank">Real Python Guide on Itertools</a></li>
+      <li><a href="https://github.com/more-itertools/more-itertools" target="_blank">More-Itertools GitHub Repository</a></li>
+    </ul>
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
