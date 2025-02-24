@@ -1,11 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PSDV_assignment</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mastering More-Itertools: Advanced Python Itertools</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+    }
+    .container {
+      max-width: 800px;
+      margin: 40px auto;
+      background: #fff;
+      padding: 20px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+    }
+    h1, h2, h3 {
+      color: #333;
+    }
+    pre {
+      background: #f4f4f4;
+      padding: 10px;
+      border-radius: 5px;
+      overflow-x: auto;
+    }
+    code {
+      font-family: Consolas, Monaco, monospace;
+      color: #d6336c;
+    }
+    a {
+      color: #0077cc;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    ul {
+      padding-left: 20px;
+    }
+  </style>
 </head>
 <body>
-    <h1>Hello World!</h1>
+  <div class="container">
+    <h1>Mastering More-Itertools: Advanced Python Itertools</h1>
+
+    <h2>Introduction</h2>
+    <p>Python’s <code>itertools</code> module is a powerful standard library that provides efficient iteration utilities...</p>
+
+    <h2>Installation & Setup</h2>
+    <pre><code>pip install more-itertools</code></pre>
+
+    <h2>Key Features</h2>
+    <h3>1. chunked</h3>
+    <pre><code>from more_itertools import chunked
+
+data = list(range(1, 11))
+print(list(chunked(data, 3)))
+</code></pre>
+
+    <h3>2. divide</h3>
+    <pre><code>from more_itertools import divide
+
+data = list(range(1, 11))
+print(list(divide(3, data)))
+</code></pre>
+
+    <h3>3. groupby_transform</h3>
+    <pre><code>from more_itertools import groupby_transform
+
+data = ["a", "A", "b", "B"]
+print({key: list(group) for key, group in groupby_transform(data, key=str.lower)})
+</code></pre>
+
+    <h3>4. windowed</h3>
+    <pre><code>from more_itertools import windowed
+
+data = list(range(1, 6))
+print(list(windowed(data, 3)))
+</code></pre>
+
+    <h2>Use Cases</h2>
+    <ul>
+      <li>Data chunking for batch processing.</li>
+      <li>Efficient data transformation.</li>
+      <li>Sliding window operations for time-series analysis.</li>
+      <li>Parallel processing for handling large datasets.</li>
+    </ul>
+
+    <h2>Conclusion</h2>
+    <p>The <code>more-itertools</code> library expands the capabilities of Python’s built-in <code>itertools</code>, making iteration-based data processing much more powerful...</p>
+
+    <h2>References</h2>
+    <ul>
+      <li><a href="https://more-itertools.readthedocs.io/en/stable/api.html" target="_blank">More-Itertools Documentation</a></li>
+      <li><a href="https://docs.python.org/3/library/itertools.html" target="_blank">Python Itertools Official Documentation</a></li>
+      <li><a href="https://realpython.com/python-itertools/" target="_blank">Real Python Guide on Itertools</a></li>
+      <li><a href="https://github.com/more-itertools/more-itertools" target="_blank">More-Itertools GitHub Repository</a></li>
+    </ul>
+  </div>
 </body>
 </html>
