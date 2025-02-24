@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Exploring Testing Utilities in more-itertools</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -30,20 +31,14 @@
         a:hover {
             text-decoration: underline;
         }
-        code {
-            background-color: #272727;
-            padding: 5px;
-            border-radius: 6px;
-            display: block;
-            margin: 10px 0;
-            overflow-x: auto;
-            color: #E0E0E0;
-        }
         pre {
             background-color: #272727;
             padding: 15px;
             border-radius: 8px;
             overflow-x: auto;
+        }
+        code {
+            font-family: 'Fira Code', monospace;
         }
         .container {
             max-width: 900px;
@@ -75,47 +70,52 @@
         <h2>Key Functions Explained</h2>
         <h3>1. <code>always_reversible()</code></h3>
         <p>Ensures any iterable can be reversed safely.</p>
-        <pre><code>from more_itertools import always_reversible
+        <pre><code class="language-python">from more_itertools import always_reversible
 
 # Example:
 reversible_list = [1, 2, 3, 4]
 for item in always_reversible(reversible_list):
-    print(item)</code></pre>
+    print(item)
+        </code></pre>
 
         <h3>2. <code>collate()</code></h3>
         <p>Merges multiple sorted iterables into a single sorted output.</p>
-        <pre><code>from more_itertools import collate
+        <pre><code class="language-python">from more_itertools import collate
 
 # Example:
 sorted_lists = [[1, 4, 5], [2, 3, 6], [0, 7, 8]]
 merged = list(collate(sorted_lists))
-print(merged)</code></pre>
+print(merged)
+        </code></pre>
 
         <h3>3. <code>numeric_range()</code></h3>
         <p>Enhances Python's <code>range()</code> to support floating-point and decimal numbers.</p>
-        <pre><code>from more_itertools import numeric_range
+        <pre><code class="language-python">from more_itertools import numeric_range
 
 # Example:
 for num in numeric_range(1.5, 5.5, 1.0):
-    print(num)</code></pre>
+    print(num)
+        </code></pre>
 
         <h2>Additional Useful Functions</h2>
         <h3><code>repeat_last()</code></h3>
         <p>Continues yielding the last item of an iterable indefinitely.</p>
-        <pre><code>from more_itertools import repeat_last
+        <pre><code class="language-python">from more_itertools import repeat_last
 
 sequence = [1, 2, 3]
 repeated = repeat_last(sequence)
 for _ in range(5):
-    print(next(repeated))</code></pre>
+    print(next(repeated))
+        </code></pre>
 
         <h3><code>peekable()</code></h3>
         <p>Allows peeking at the next item without consuming it.</p>
-        <pre><code>from more_itertools import peekable
+        <pre><code class="language-python">from more_itertools import peekable
 
 iterable = peekable(range(5))
 if iterable.peek() == 0:
-    print("First element is 0!")</code></pre>
+    print("First element is 0!")
+        </code></pre>
 
         <h2>Real-World Applications</h2>
         <ul>
@@ -131,5 +131,8 @@ if iterable.peek() == 0:
     <footer>
         <p>© 2024 Your Blog Name. All rights reserved.</p>
     </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/components/prism-python.min.js"></script>
 </body>
 </html>
