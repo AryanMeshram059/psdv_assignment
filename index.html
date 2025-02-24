@@ -1,178 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mastering More-Itertools: Advanced Python Itertools</title>
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css" rel="stylesheet">
-  <style>
-    :root {
-      --background-color: #f5f7fa;
-      --text-color: #333;
-      --accent-color: #4a90e2;
-      --code-bg: #2d2d2d;
-      --output-bg: #e8ffe8;
-      --hover-color: #357ABD;
-      --transition-speed: 0.3s;
-    }
-
-    [data-theme="dark"] {
-      --background-color: #1e1e1e;
-      --text-color: #e0e0e0;
-      --accent-color: #00b4d8;
-      --code-bg: #2d2d2d;
-      --output-bg: #2e8b57;
-      --hover-color: #0088a9;
-    }
-
-    body {
-      font-family: 'Poppins', sans-serif;
-      line-height: 1.6;
-      margin: 0;
-      padding: 0;
-      background-color: var(--background-color);
-      color: var(--text-color);
-      transition: background-color var(--transition-speed), color var(--transition-speed);
-    }
-
-    header {
-      background: var(--accent-color);
-      padding: 15px 20px;
-      color: #fff;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    }
-
-    header h1 {
-      margin: 0;
-      font-size: 1.8em;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      transition: color var(--transition-speed);
-    }
-
-    .theme-switch {
-      position: relative;
-      display: inline-block;
-      width: 50px;
-      height: 24px;
-    }
-
-    .theme-switch input {
-      opacity: 0;
-      width: 0;
-      height: 0;
-    }
-
-    .slider {
-      position: absolute;
-      cursor: pointer;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-color: #ccc;
-      transition: background-color var(--transition-speed);
-      border-radius: 34px;
-    }
-
-    .slider:before {
-      position: absolute;
-      content: "";
-      height: 16px;
-      width: 16px;
-      left: 4px;
-      bottom: 4px;
-      background-color: white;
-      transition: transform var(--transition-speed);
-      border-radius: 50%;
-    }
-
-    input:checked + .slider {
-      background-color: var(--text-color);
-    }
-
-    input:checked + .slider:before {
-      transform: translateX(26px);
-    }
-
-    .container {
-      max-width: 900px;
-      margin: 40px auto;
-      background: var(--background-color);
-      padding: 30px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-      border-radius: 20px;
-      color: var(--text-color);
-      transition: box-shadow var(--transition-speed);
-    }
-
-    .container:hover {
-      box-shadow: 0 15px 45px rgba(0, 0, 0, 0.15);
-    }
-
-    h1, h2, h3 {
-      color: var(--text-color);
-      transition: color var(--transition-speed);
-    }
-
-    pre code {
-      display: block;
-      background: var(--code-bg);
-      padding: 20px;
-      border-radius: 12px;
-      overflow-x: auto;
-      transition: background-color var(--transition-speed);
-    }
-
-    .output {
-      background-color: var(--output-bg);
-      padding: 15px;
-      border-radius: 10px;
-      margin-top: 10px;
-      font-family: Consolas, Monaco, monospace;
-      transition: background-color var(--transition-speed);
-    }
-
-    a {
-      color: var(--accent-color);
-      text-decoration: none;
-      transition: color var(--transition-speed);
-    }
-
-    a:hover {
-      color: var(--hover-color);
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exploring Testing Utilities in more-itertools</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #121212;
+            color: #E0E0E0;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        header {
+            background-color: #1F1B24;
+            color: #BB86FC;
+            padding: 20px;
+            text-align: center;
+            border-radius: 12px;
+            margin-bottom: 30px;
+        }
+        h1, h2, h3, h4 {
+            color: #BB86FC;
+        }
+        a {
+            color: #03DAC6;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        code {
+            background-color: #272727;
+            padding: 5px;
+            border-radius: 6px;
+            display: block;
+            margin: 10px 0;
+            overflow-x: auto;
+            color: #E0E0E0;
+        }
+        pre {
+            background-color: #272727;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        footer {
+            margin-top: 40px;
+            text-align: center;
+            font-size: 0.9em;
+            color: #757575;
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <h1><i class="fas fa-code"></i> More-Itertools Blog</h1>
-    <label class="theme-switch">
-      <input type="checkbox" onchange="toggleTheme()">
-      <span class="slider"></span>
-    </label>
-  </header>
+    <header>
+        <h1>Exploring Testing Utilities in <code>more-itertools</code></h1>
+        <p>A Comprehensive Guide for Python Developers</p>
+    </header>
+    <div class="container">
+        <h2>Introduction</h2>
+        <p>In the vast ecosystem of Python libraries, <code>more-itertools</code> extends the built-in <code>itertools</code> module, providing additional tools for handling complex iterable operations.</p>
+        <h2>Why Use <code>more-itertools</code> Testing Utilities?</h2>
+        <ul>
+            <li>Simplifies comparisons between complex iterables.</li>
+            <li>Handles edge cases effortlessly.</li>
+            <li>Reduces boilerplate code for iterable tests.</li>
+        </ul>
 
-  <div class="container">
-    <!-- Blog content remains unchanged -->
-  </div>
+        <h2>Key Functions Explained</h2>
+        <h3>1. <code>always_reversible()</code></h3>
+        <p>Ensures any iterable can be reversed safely.</p>
+        <pre><code>from more_itertools import always_reversible
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
-  <script>hljs.highlightAll();</script>
-  <script>
-    function toggleTheme() {
-      const currentTheme = document.documentElement.getAttribute('data-theme');
-      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-      document.documentElement.setAttribute('data-theme', newTheme);
-    }
-  </script>
+# Example:
+reversible_list = [1, 2, 3, 4]
+for item in always_reversible(reversible_list):
+    print(item)</code></pre>
+
+        <h3>2. <code>collate()</code></h3>
+        <p>Merges multiple sorted iterables into a single sorted output.</p>
+        <pre><code>from more_itertools import collate
+
+# Example:
+sorted_lists = [[1, 4, 5], [2, 3, 6], [0, 7, 8]]
+merged = list(collate(sorted_lists))
+print(merged)</code></pre>
+
+        <h3>3. <code>numeric_range()</code></h3>
+        <p>Enhances Python's <code>range()</code> to support floating-point and decimal numbers.</p>
+        <pre><code>from more_itertools import numeric_range
+
+# Example:
+for num in numeric_range(1.5, 5.5, 1.0):
+    print(num)</code></pre>
+
+        <h2>Additional Useful Functions</h2>
+        <h3><code>repeat_last()</code></h3>
+        <p>Continues yielding the last item of an iterable indefinitely.</p>
+        <pre><code>from more_itertools import repeat_last
+
+sequence = [1, 2, 3]
+repeated = repeat_last(sequence)
+for _ in range(5):
+    print(next(repeated))</code></pre>
+
+        <h3><code>peekable()</code></h3>
+        <p>Allows peeking at the next item without consuming it.</p>
+        <pre><code>from more_itertools import peekable
+
+iterable = peekable(range(5))
+if iterable.peek() == 0:
+    print("First element is 0!")</code></pre>
+
+        <h2>Real-World Applications</h2>
+        <ul>
+            <li>Data Validation</li>
+            <li>Edge Case Testing</li>
+            <li>Efficient Test Writing</li>
+        </ul>
+
+        <h2>Conclusion</h2>
+        <p>Enhance your iterable testing workflows by integrating <code>more-itertools</code> into your Python projects. Dive deeper with the full documentation <a href="https://more-itertools.readthedocs.io/en/stable/testing.html">here</a>.</p>
+    </div>
+
+    <footer>
+        <p>© 2024 Your Blog Name. All rights reserved.</p>
+    </footer>
 </body>
 </html>
