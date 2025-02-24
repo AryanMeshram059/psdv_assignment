@@ -4,13 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mastering More-Itertools: Advanced Python Itertools</title>
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css" rel="stylesheet">
   <style>
     :root {
-      --background-color: #f9f9f9;
+      --background-color: #f5f7fa;
       --text-color: #333;
-      --accent-color: #0077cc;
-      --code-bg: #f4f4f4;
-      --highlight-color: #d6336c;
+      --accent-color: #4a90e2;
+      --secondary-color: #50e3c2;
+      --code-bg: #2d2d2d;
+      --highlight-color: #ff6b6b;
       --output-bg: #e8ffe8;
     }
 
@@ -18,13 +21,14 @@
       --background-color: #1e1e1e;
       --text-color: #e0e0e0;
       --accent-color: #00b4d8;
+      --secondary-color: #ff9f1c;
       --code-bg: #2d2d2d;
       --highlight-color: #ff6b6b;
       --output-bg: #2e8b57;
     }
 
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       line-height: 1.6;
       margin: 0;
       padding: 0;
@@ -33,35 +37,39 @@
     }
 
     header {
-      background-color: var(--accent-color);
-      padding: 10px 20px;
+      background: linear-gradient(45deg, var(--accent-color), var(--secondary-color));
+      padding: 15px 20px;
       color: #fff;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     }
 
     header h1 {
       margin: 0;
-      font-size: 1.5em;
+      font-size: 1.8em;
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
 
     .theme-switcher {
       background: none;
       border: 1px solid #fff;
-      padding: 5px 10px;
+      padding: 8px 12px;
       color: #fff;
       border-radius: 5px;
       cursor: pointer;
     }
 
     .container {
-      max-width: 800px;
+      max-width: 900px;
       margin: 40px auto;
       background: #fff;
       padding: 20px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      border-radius: 10px;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+      border-radius: 12px;
       background-color: var(--background-color);
       color: var(--text-color);
     }
@@ -70,16 +78,12 @@
       color: var(--text-color);
     }
 
-    pre {
+    pre code {
+      display: block;
       background: var(--code-bg);
-      padding: 10px;
-      border-radius: 5px;
+      padding: 15px;
+      border-radius: 8px;
       overflow-x: auto;
-    }
-
-    code {
-      font-family: Consolas, Monaco, monospace;
-      color: var(--highlight-color);
     }
 
     .output {
@@ -106,53 +110,53 @@
 </head>
 <body>
   <header>
-    <h1>More-Itertools Blog</h1>
-    <button class="theme-switcher" onclick="toggleTheme()">Toggle Theme</button>
+    <h1><i class="fas fa-code"></i> More-Itertools Blog</h1>
+    <button class="theme-switcher" onclick="toggleTheme()"><i class="fas fa-adjust"></i> Toggle Theme</button>
   </header>
 
   <div class="container">
-    <h1>Mastering More-Itertools: Advanced Python Itertools</h1>
+    <h1><i class="fas fa-book"></i> Mastering More-Itertools: Advanced Python Itertools</h1>
 
-    <h2>Introduction</h2>
+    <h2><i class="fas fa-info-circle"></i> Introduction</h2>
     <p>Python’s <code>itertools</code> module is a powerful standard library that provides efficient iteration utilities...</p>
 
-    <h2>Installation & Setup</h2>
-    <pre><code>pip install more-itertools</code></pre>
+    <h2><i class="fas fa-cogs"></i> Installation & Setup</h2>
+    <pre><code class="language-bash">pip install more-itertools</code></pre>
 
-    <h2>Key Features</h2>
-    <h3>1. chunked</h3>
-    <pre><code>from more_itertools import chunked
+    <h2><i class="fas fa-star"></i> Key Features</h2>
+    <h3><i class="fas fa-stream"></i> 1. chunked</h3>
+    <pre><code class="language-python">from more_itertools import chunked
 
 data = list(range(1, 11))
 print(list(chunked(data, 3)))
 </code></pre>
     <div class="output">[[1, 2, 3], [4, 5, 6], [7, 8, 9], [10]]</div>
 
-    <h3>2. divide</h3>
-    <pre><code>from more_itertools import divide
+    <h3><i class="fas fa-columns"></i> 2. divide</h3>
+    <pre><code class="language-python">from more_itertools import divide
 
 data = list(range(1, 11))
 print(list(divide(3, data)))
 </code></pre>
     <div class="output">[[1, 2, 3, 4], [5, 6, 7], [8, 9, 10]]</div>
 
-    <h3>3. groupby_transform</h3>
-    <pre><code>from more_itertools import groupby_transform
+    <h3><i class="fas fa-object-group"></i> 3. groupby_transform</h3>
+    <pre><code class="language-python">from more_itertools import groupby_transform
 
 data = ["a", "A", "b", "B"]
 print({key: list(group) for key, group in groupby_transform(data, key=str.lower)})
 </code></pre>
     <div class="output">{'a': ['a', 'A'], 'b': ['b', 'B']}</div>
 
-    <h3>4. windowed</h3>
-    <pre><code>from more_itertools import windowed
+    <h3><i class="fas fa-window-restore"></i> 4. windowed</h3>
+    <pre><code class="language-python">from more_itertools import windowed
 
 data = list(range(1, 6))
 print(list(windowed(data, 3)))
 </code></pre>
     <div class="output">[(1, 2, 3), (2, 3, 4), (3, 4, 5)]</div>
 
-    <h2>Use Cases</h2>
+    <h2><i class="fas fa-lightbulb"></i> Use Cases</h2>
     <ul>
       <li>Data chunking for batch processing.</li>
       <li>Efficient data transformation.</li>
@@ -160,10 +164,10 @@ print(list(windowed(data, 3)))
       <li>Parallel processing for handling large datasets.</li>
     </ul>
 
-    <h2>Conclusion</h2>
+    <h2><i class="fas fa-check-circle"></i> Conclusion</h2>
     <p>The <code>more-itertools</code> library expands the capabilities of Python’s built-in <code>itertools</code>...</p>
 
-    <h2>References</h2>
+    <h2><i class="fas fa-link"></i> References</h2>
     <ul>
       <li><a href="https://more-itertools.readthedocs.io/en/stable/api.html" target="_blank">More-Itertools Documentation</a></li>
       <li><a href="https://docs.python.org/3/library/itertools.html" target="_blank">Python Itertools Official Documentation</a></li>
@@ -172,6 +176,8 @@ print(list(windowed(data, 3)))
     </ul>
   </div>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
   <script>
     function toggleTheme() {
       const currentTheme = document.documentElement.getAttribute('data-theme');
@@ -181,4 +187,3 @@ print(list(windowed(data, 3)))
   </script>
 </body>
 </html>
-
