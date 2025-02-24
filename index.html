@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mastering Grouping in Python with More-Itertools</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
   <style>
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -26,7 +29,6 @@
     }
     pre {
       background-color: #272822;
-      color: #f8f8f2;
       padding: 15px;
       border-radius: 8px;
       overflow-x: auto;
@@ -57,7 +59,7 @@
     <p>While Python’s built-in tools like <code>itertools.groupby</code> provide basic grouping functionality, the <strong>more-itertools</strong> library extends these capabilities with powerful, easy-to-use tools designed for real-world data challenges.</p>
 
     <h2>Installation & Setup</h2>
-    <pre><code>pip install more-itertools</code></pre>
+    <pre><code class="bash">pip install more-itertools</code></pre>
 
     <h2>Key Features</h2>
     <ul>
@@ -68,7 +70,7 @@
 
     <h2>Code Examples</h2>
     <h3>1. Chunked Example</h3>
-    <pre><code>from more_itertools import chunked
+    <pre><code class="python">from more_itertools import chunked
 
 data = list(range(1, 11))
 chunks = list(chunked(data, 3))
@@ -77,7 +79,7 @@ print(chunks)  # Output: [[1, 2, 3], [4, 5, 6], [7, 8, 9], [10]]
     <p><strong>Real-life Use Case:</strong> Batch processing in machine learning to optimize memory usage and training time.</p>
 
     <h3>2. Divide Example</h3>
-    <pre><code>from more_itertools import divide
+    <pre><code class="python">from more_itertools import divide
 
 data = list(range(1, 11))
 divided = list(divide(3, data))
@@ -86,7 +88,7 @@ print(divided)  # Output: [[1, 2, 3, 4], [5, 6, 7], [8, 9, 10]]
     <p><strong>Real-life Use Case:</strong> Task scheduling for efficient workload distribution.</p>
 
     <h3>3. Groupby Example</h3>
-    <pre><code>from more_itertools import groupby
+    <pre><code class="python">from more_itertools import groupby
 
 data = [
     {"region": "North", "sales": 100},
@@ -112,6 +114,7 @@ for region, items in grouped_data:
 
     <h2>Conclusion</h2>
     <p>The <strong>more-itertools</strong> library provides powerful grouping utilities that simplify working with complex datasets. Whether you’re chunking large lists, dividing data into equal parts, or grouping elements based on specific attributes, these tools offer elegant solutions for everyday coding problems.</p>
+    <p>For more information, check the official <a href="https://more-itertools.readthedocs.io/" target="_blank">more-itertools documentation</a>.</p>
 
     <div class="footer">
       <p>© 2024 [Your Name]. All rights reserved.</p>
