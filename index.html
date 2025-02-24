@@ -1,138 +1,121 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exploring Testing Utilities in more-itertools</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #121212;
-            color: #E0E0E0;
-            line-height: 1.6;
-            padding: 20px;
-        }
-        header {
-            background-color: #1F1B24;
-            color: #BB86FC;
-            padding: 20px;
-            text-align: center;
-            border-radius: 12px;
-            margin-bottom: 30px;
-        }
-        h1, h2, h3, h4 {
-            color: #BB86FC;
-        }
-        a {
-            color: #03DAC6;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-        pre {
-            background-color: #272727;
-            padding: 15px;
-            border-radius: 8px;
-            overflow-x: auto;
-        }
-        code {
-            font-family: 'Fira Code', monospace;
-        }
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-        footer {
-            margin-top: 40px;
-            text-align: center;
-            font-size: 0.9em;
-            color: #757575;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mastering Grouping in Python with More-Itertools</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+    .container {
+      max-width: 800px;
+      margin: 40px auto;
+      background: #fff;
+      padding: 20px 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    h1, h2, h3 {
+      color: #222;
+    }
+    pre {
+      background-color: #272822;
+      color: #f8f8f2;
+      padding: 15px;
+      border-radius: 8px;
+      overflow-x: auto;
+    }
+    code {
+      font-family: 'Courier New', Courier, monospace;
+    }
+    a {
+      color: #0077cc;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .footer {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 0.9em;
+      color: #777;
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <h1>Exploring Testing Utilities in <code>more-itertools</code></h1>
-        <p>A Comprehensive Guide for Python Developers</p>
-    </header>
-    <div class="container">
-        <h2>Introduction</h2>
-        <p>In the vast ecosystem of Python libraries, <code>more-itertools</code> extends the built-in <code>itertools</code> module, providing additional tools for handling complex iterable operations.</p>
-        <h2>Why Use <code>more-itertools</code> Testing Utilities?</h2>
-        <ul>
-            <li>Simplifies comparisons between complex iterables.</li>
-            <li>Handles edge cases effortlessly.</li>
-            <li>Reduces boilerplate code for iterable tests.</li>
-        </ul>
+  <div class="container">
+    <h1>Mastering Grouping in Python with More-Itertools</h1>
+    <h2>Introduction</h2>
+    <p>Grouping data efficiently is an essential skill for Python developers, especially those working in data science, automation, or handling large datasets. Whether you're processing sales data by region, dividing tasks into manageable batches, or organizing information based on custom rules, grouping simplifies workflows and improves performance.</p>
+    <p>While Python’s built-in tools like <code>itertools.groupby</code> provide basic grouping functionality, the <strong>more-itertools</strong> library extends these capabilities with powerful, easy-to-use tools designed for real-world data challenges.</p>
 
-        <h2>Key Functions Explained</h2>
-        <h3>1. <code>always_reversible()</code></h3>
-        <p>Ensures any iterable can be reversed safely.</p>
-        <pre><code class="language-python">from more_itertools import always_reversible
+    <h2>Installation & Setup</h2>
+    <pre><code>pip install more-itertools</code></pre>
 
-# Example:
-reversible_list = [1, 2, 3, 4]
-for item in always_reversible(reversible_list):
-    print(item)
-        </code></pre>
+    <h2>Key Features</h2>
+    <ul>
+      <li><code>chunked(iterable, n)</code>: Splits an iterable into lists of size n.</li>
+      <li><code>divide(n, iterable)</code>: Divides an iterable into n approximately equal parts.</li>
+      <li><code>groupby(iterable, keyfunc)</code>: Groups elements based on a specified key function.</li>
+    </ul>
 
-        <h3>2. <code>collate()</code></h3>
-        <p>Merges multiple sorted iterables into a single sorted output.</p>
-        <pre><code class="language-python">from more_itertools import collate
+    <h2>Code Examples</h2>
+    <h3>1. Chunked Example</h3>
+    <pre><code>from more_itertools import chunked
 
-# Example:
-sorted_lists = [[1, 4, 5], [2, 3, 6], [0, 7, 8]]
-merged = list(collate(sorted_lists))
-print(merged)
-        </code></pre>
+data = list(range(1, 11))
+chunks = list(chunked(data, 3))
+print(chunks)  # Output: [[1, 2, 3], [4, 5, 6], [7, 8, 9], [10]]
+    </code></pre>
+    <p><strong>Real-life Use Case:</strong> Batch processing in machine learning to optimize memory usage and training time.</p>
 
-        <h3>3. <code>numeric_range()</code></h3>
-        <p>Enhances Python's <code>range()</code> to support floating-point and decimal numbers.</p>
-        <pre><code class="language-python">from more_itertools import numeric_range
+    <h3>2. Divide Example</h3>
+    <pre><code>from more_itertools import divide
 
-# Example:
-for num in numeric_range(1.5, 5.5, 1.0):
-    print(num)
-        </code></pre>
+data = list(range(1, 11))
+divided = list(divide(3, data))
+print(divided)  # Output: [[1, 2, 3, 4], [5, 6, 7], [8, 9, 10]]
+    </code></pre>
+    <p><strong>Real-life Use Case:</strong> Task scheduling for efficient workload distribution.</p>
 
-        <h2>Additional Useful Functions</h2>
-        <h3><code>repeat_last()</code></h3>
-        <p>Continues yielding the last item of an iterable indefinitely.</p>
-        <pre><code class="language-python">from more_itertools import repeat_last
+    <h3>3. Groupby Example</h3>
+    <pre><code>from more_itertools import groupby
 
-sequence = [1, 2, 3]
-repeated = repeat_last(sequence)
-for _ in range(5):
-    print(next(repeated))
-        </code></pre>
+data = [
+    {"region": "North", "sales": 100},
+    {"region": "South", "sales": 200},
+    {"region": "North", "sales": 150},
+    {"region": "South", "sales": 300},
+    {"region": "East", "sales": 250},
+]
 
-        <h3><code>peekable()</code></h3>
-        <p>Allows peeking at the next item without consuming it.</p>
-        <pre><code class="language-python">from more_itertools import peekable
+grouped_data = groupby(data, key=lambda x: x["region"])
+for region, items in grouped_data:
+    print(region, list(items))
+    </code></pre>
+    <p><strong>Real-life Use Case:</strong> Summarizing sales data by region.</p>
 
-iterable = peekable(range(5))
-if iterable.peek() == 0:
-    print("First element is 0!")
-        </code></pre>
+    <h2>Use Cases</h2>
+    <ul>
+      <li>Grouping sales data by region.</li>
+      <li>Dividing workloads into batches for parallel processing.</li>
+      <li>Processing streaming data in real-time.</li>
+      <li>Organizing survey data by demographics.</li>
+    </ul>
 
-        <h2>Real-World Applications</h2>
-        <ul>
-            <li>Data Validation</li>
-            <li>Edge Case Testing</li>
-            <li>Efficient Test Writing</li>
-        </ul>
+    <h2>Conclusion</h2>
+    <p>The <strong>more-itertools</strong> library provides powerful grouping utilities that simplify working with complex datasets. Whether you’re chunking large lists, dividing data into equal parts, or grouping elements based on specific attributes, these tools offer elegant solutions for everyday coding problems.</p>
 
-        <h2>Conclusion</h2>
-        <p>Enhance your iterable testing workflows by integrating <code>more-itertools</code> into your Python projects. Dive deeper with the full documentation <a href="https://more-itertools.readthedocs.io/en/stable/testing.html">here</a>.</p>
+    <div class="footer">
+      <p>© 2024 [Your Name]. All rights reserved.</p>
     </div>
-
-    <footer>
-        <p>© 2024 Your Blog Name. All rights reserved.</p>
-    </footer>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/prism.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/components/prism-python.min.js"></script>
+  </div>
 </body>
 </html>
